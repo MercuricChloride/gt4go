@@ -1,0 +1,212 @@
+{
+	"__schema" : "4.1",
+	"__type" : "page",
+	"children" : {
+		"__type" : "snippets",
+		"items" : [
+			{
+				"__type" : "textSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T12:26:00.708259-07:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T12:27:46.994229-07:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "29BibcLgDQCxMTKkA03Xjg=="
+				},
+				"paragraphStyle" : {
+					"__type" : "textStyle"
+				},
+				"string" : "So we need to be able to parse golang documents. So we are going to translate the golang antlr parser into a smacc parser. Like they do in {{gtPage:How to translate an ANTLr parser into SmaCC|db=2j9m7db2i4oz116bexd7wbdxo}}."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T12:28:12.249945-07:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T13:06:53.511244-07:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "2fI5dcLgDQCKGZUKC4rGFg=="
+				},
+				"code" : "parser := ZnClient new get: 'https://raw.githubusercontent.com/antlr/grammars-v4/refs/heads/master/golang/GoParser.g4'.\rparser := (parser collect: [:char | (char asciiValue = 322) \r\tifTrue: $l\r\tifFalse: char]) asByteString.\rfile := FileSystem workingDirectory / 'go-parser.g4'.\rfile binaryWriteStreamDo: [:aStream |aStream nextPutAll: parser ].\r\rlexer := ZnClient new get: 'https://raw.githubusercontent.com/antlr/grammars-v4/refs/heads/master/golang/GoLexer.g4'.\rlexer := (lexer collect: [:char | (char asciiValue = 322) \r\tifTrue: $l\r\tifFalse: char]) asByteString.\r\t\rlexerFile := FileSystem workingDirectory / 'go-lexer.g4'.\rlexerFile binaryWriteStreamDo: [:aStream |aStream nextPutAll: lexer ].\rlexerFile"
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T13:07:00.002529-07:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T13:33:24.284642-07:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "WJj4/8LgDQCAhv+qA0Z2bQ=="
+				},
+				"code" : "channel := '->' asPParser , #any asPParser starLazy flatten , (';' asPParser, #endOfLine asPParser).\rchannelSea := (channel sea ==> [:matches | \r\t(String newFrom: matches first) , '/*' , matches second flatten , '*/;' , (String newFrom: matches third )\r]) plus.\rmatches := channelSea parse: lexerFile contents.\rformattedLexer := matches inject: '' into: [:acc :e | acc , e ].\rlexerFile binaryWriteStreamDo: [:aStream | aStream nextPutAll: formattedLexer ].\rlexerFile."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T12:27:56.480473-07:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T13:29:32.343058-07:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "nllJdMLgDQCKCM4NC4rGFg=="
+				},
+				"code" : "tree := Antlr4Parser parseFile: 'go-lexer.g4'."
+			},
+			{
+				"__type" : "pharoSnippet",
+				"children" : {
+					"__type" : "snippets",
+					"items" : [ ]
+				},
+				"createEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"createTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T12:50:26.758388-07:00"
+					}
+				},
+				"editEmail" : {
+					"__type" : "email",
+					"emailString" : "<unknown>"
+				},
+				"editTime" : {
+					"__type" : "time",
+					"time" : {
+						"__type" : "dateAndTime",
+						"dateAndTimeString" : "2024-10-13T12:50:27.183493-07:00"
+					}
+				},
+				"uid" : {
+					"__type" : "uid",
+					"uidString" : "LPHExMLgDQC8IK69A0Z2bQ=="
+				},
+				"code" : "fileSystem := FileSystem memory.\rrewriteFile := fileSystem / 'antlr.rw'.\rZnClient new\r\turl: 'https://raw.githubusercontent.com/j-brant/SmaCC/master/rewrites/antlr/antlr.rw';\r\tdownloadTo: rewriteFile.\rrewriter := SmaCCRewriteEngine new.\rrewriter rewriteRule: (SmaCCRewriteRuleFileParser parseFile: rewriteFile).\rrewriter rewriteTree: tree"
+			}
+		]
+	},
+	"createEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"createTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-10-13T12:26:05.124405-07:00"
+		}
+	},
+	"editEmail" : {
+		"__type" : "email",
+		"emailString" : "<unknown>"
+	},
+	"editTime" : {
+		"__type" : "time",
+		"time" : {
+			"__type" : "dateAndTime",
+			"dateAndTimeString" : "2024-10-13T12:26:05.124405-07:00"
+		}
+	},
+	"pageType" : {
+		"__type" : "namedPage",
+		"title" : "Building a golang parser"
+	},
+	"uid" : {
+		"__type" : "uuid",
+		"uuid" : "d4ce626d-c2e0-0d00-b130-bf40034dd78e"
+	}
+}
