@@ -1,342 +1,282 @@
 Class {
-	#name : #GoSourceFileNode,
+	#name : #GoFunctionDeclNode,
 	#superclass : #GoProgramNode,
 	#instVars : [
-		'package',
-		'imports',
-		'functionDeclarations',
-		'methodDeclarations',
-		'idents',
 		'names',
+		'paramses',
+		'reses',
+		'idents',
 		'argses',
+		'typeLists',
 		'unaryOps',
 		'mulOps',
 		'addOps',
 		'relOps',
-		'typeLists',
-		'paramses',
-		'reses',
-		'tags',
-		'params',
-		'firsts',
-		'nexts',
 		'channels',
 		'postStmts',
 		'initStmts',
 		'recvExprs',
-		'types'
+		'types',
+		'firsts',
+		'nexts',
+		'tags',
+		'params'
 	],
 	#category : #'Gt4go-Parser'
 }
 
 { #category : #generated }
-GoSourceFileNode >> acceptVisitor: aProgramVisitor [
-	^ aProgramVisitor visitSourceFile: self
+GoFunctionDeclNode >> acceptVisitor: aProgramVisitor [
+	^ aProgramVisitor visitFunctionDecl: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> addOps [
+GoFunctionDeclNode >> addOps [
 	^ addOps
 ]
 
 { #category : #generated }
-GoSourceFileNode >> addOps: anOrderedCollection [
+GoFunctionDeclNode >> addOps: anOrderedCollection [
 	addOps := anOrderedCollection
 ]
 
 { #category : #generated }
-GoSourceFileNode >> argses [
+GoFunctionDeclNode >> argses [
 	^ argses
 ]
 
 { #category : #generated }
-GoSourceFileNode >> argses: anOrderedCollection [
+GoFunctionDeclNode >> argses: anOrderedCollection [
 	self setParents: self argses to: nil.
 	argses := anOrderedCollection.
 	self setParents: self argses to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> channels [
+GoFunctionDeclNode >> channels [
 	^ channels
 ]
 
 { #category : #generated }
-GoSourceFileNode >> channels: anOrderedCollection [
+GoFunctionDeclNode >> channels: anOrderedCollection [
 	self setParent: self channels to: nil.
 	channels := anOrderedCollection.
 	self setParent: self channels to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> compositeNodeVariables [
-	^ #(#imports #functionDeclarations #methodDeclarations #argses #typeLists #paramses #params)
+GoFunctionDeclNode >> compositeNodeVariables [
+	^ #(#paramses #argses #typeLists #params)
 ]
 
 { #category : #generated }
-GoSourceFileNode >> compositeTokenVariables [
+GoFunctionDeclNode >> compositeTokenVariables [
 	^ #(#idents #unaryOps #mulOps #addOps #relOps #tags #firsts #nexts)
 ]
 
 { #category : #generated }
-GoSourceFileNode >> firsts [
+GoFunctionDeclNode >> firsts [
 	^ firsts
 ]
 
 { #category : #generated }
-GoSourceFileNode >> firsts: anOrderedCollection [
+GoFunctionDeclNode >> firsts: anOrderedCollection [
 	firsts := anOrderedCollection
 ]
 
 { #category : #generated }
-GoSourceFileNode >> functionDeclarations [
-	^ functionDeclarations
-]
-
-{ #category : #generated }
-GoSourceFileNode >> functionDeclarations: anOrderedCollection [
-	self setParents: self functionDeclarations to: nil.
-	functionDeclarations := anOrderedCollection.
-	self setParents: self functionDeclarations to: self
-]
-
-{ #category : #generated }
-GoSourceFileNode >> idents [
+GoFunctionDeclNode >> idents [
 	^ idents
 ]
 
 { #category : #generated }
-GoSourceFileNode >> idents: anOrderedCollection [
+GoFunctionDeclNode >> idents: anOrderedCollection [
 	idents := anOrderedCollection
 ]
 
 { #category : #generated }
-GoSourceFileNode >> imports [
-	^ imports
-]
-
-{ #category : #generated }
-GoSourceFileNode >> imports: anOrderedCollection [
-	self setParents: self imports to: nil.
-	imports := anOrderedCollection.
-	self setParents: self imports to: self
-]
-
-{ #category : #generated }
-GoSourceFileNode >> initStmts [
+GoFunctionDeclNode >> initStmts [
 	^ initStmts
 ]
 
 { #category : #generated }
-GoSourceFileNode >> initStmts: anOrderedCollection [
+GoFunctionDeclNode >> initStmts: anOrderedCollection [
 	self setParent: self initStmts to: nil.
 	initStmts := anOrderedCollection.
 	self setParent: self initStmts to: self
 ]
 
 { #category : #'generated-initialize-release' }
-GoSourceFileNode >> initialize [
+GoFunctionDeclNode >> initialize [
 	super initialize.
-	imports := OrderedCollection new: 2.
-	functionDeclarations := OrderedCollection new: 2.
-	methodDeclarations := OrderedCollection new: 2.
-	idents := OrderedCollection new: 2.
 	names := OrderedCollection new: 2.
+	paramses := OrderedCollection new: 2.
+	reses := OrderedCollection new: 2.
+	idents := OrderedCollection new: 2.
 	argses := OrderedCollection new: 2.
+	typeLists := OrderedCollection new: 2.
 	unaryOps := OrderedCollection new: 2.
 	mulOps := OrderedCollection new: 2.
 	addOps := OrderedCollection new: 2.
 	relOps := OrderedCollection new: 2.
-	typeLists := OrderedCollection new: 2.
-	paramses := OrderedCollection new: 2.
-	reses := OrderedCollection new: 2.
 	tags := OrderedCollection new: 2.
 	params := OrderedCollection new: 2.
-	firsts := OrderedCollection new: 2.
-	nexts := OrderedCollection new: 2.
 	channels := OrderedCollection new: 2.
 	postStmts := OrderedCollection new: 2.
 	initStmts := OrderedCollection new: 2.
 	types := OrderedCollection new: 2.
 	recvExprs := OrderedCollection new: 2.
+	firsts := OrderedCollection new: 2.
+	nexts := OrderedCollection new: 2.
 ]
 
 { #category : #generated }
-GoSourceFileNode >> methodDeclarations [
-	^ methodDeclarations
-]
-
-{ #category : #generated }
-GoSourceFileNode >> methodDeclarations: anOrderedCollection [
-	self setParents: self methodDeclarations to: nil.
-	methodDeclarations := anOrderedCollection.
-	self setParents: self methodDeclarations to: self
-]
-
-{ #category : #generated }
-GoSourceFileNode >> mulOps [
+GoFunctionDeclNode >> mulOps [
 	^ mulOps
 ]
 
 { #category : #generated }
-GoSourceFileNode >> mulOps: anOrderedCollection [
+GoFunctionDeclNode >> mulOps: anOrderedCollection [
 	mulOps := anOrderedCollection
 ]
 
 { #category : #generated }
-GoSourceFileNode >> names [
+GoFunctionDeclNode >> names [
 	^ names
 ]
 
 { #category : #generated }
-GoSourceFileNode >> names: anOrderedCollection [
+GoFunctionDeclNode >> names: anOrderedCollection [
 	self setParent: self names to: nil.
 	names := anOrderedCollection.
 	self setParent: self names to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> nexts [
+GoFunctionDeclNode >> nexts [
 	^ nexts
 ]
 
 { #category : #generated }
-GoSourceFileNode >> nexts: anOrderedCollection [
+GoFunctionDeclNode >> nexts: anOrderedCollection [
 	nexts := anOrderedCollection
 ]
 
 { #category : #generated }
-GoSourceFileNode >> nodeVariables [
-	^ #(#package)
-]
-
-{ #category : #generated }
-GoSourceFileNode >> otherVariables [
+GoFunctionDeclNode >> otherVariables [
 	^ #(#names #reses #channels #postStmts #initStmts #types #recvExprs)
 ]
 
 { #category : #generated }
-GoSourceFileNode >> package [
-	^ package
-]
-
-{ #category : #generated }
-GoSourceFileNode >> package: aGoPackageClauseNode [
-	self package notNil ifTrue: [ self package parent: nil ].
-	package := aGoPackageClauseNode.
-	self package notNil ifTrue: [ self package parent: self ]
-]
-
-{ #category : #generated }
-GoSourceFileNode >> params [
+GoFunctionDeclNode >> params [
 	^ params
 ]
 
 { #category : #generated }
-GoSourceFileNode >> params: anOrderedCollection [
+GoFunctionDeclNode >> params: anOrderedCollection [
 	self setParents: self params to: nil.
 	params := anOrderedCollection.
 	self setParents: self params to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> paramses [
+GoFunctionDeclNode >> paramses [
 	^ paramses
 ]
 
 { #category : #generated }
-GoSourceFileNode >> paramses: anOrderedCollection [
+GoFunctionDeclNode >> paramses: anOrderedCollection [
 	self setParents: self paramses to: nil.
 	paramses := anOrderedCollection.
 	self setParents: self paramses to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> postStmts [
+GoFunctionDeclNode >> postStmts [
 	^ postStmts
 ]
 
 { #category : #generated }
-GoSourceFileNode >> postStmts: anOrderedCollection [
+GoFunctionDeclNode >> postStmts: anOrderedCollection [
 	self setParent: self postStmts to: nil.
 	postStmts := anOrderedCollection.
 	self setParent: self postStmts to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> recvExprs [
+GoFunctionDeclNode >> recvExprs [
 	^ recvExprs
 ]
 
 { #category : #generated }
-GoSourceFileNode >> recvExprs: anOrderedCollection [
+GoFunctionDeclNode >> recvExprs: anOrderedCollection [
 	self setParent: self recvExprs to: nil.
 	recvExprs := anOrderedCollection.
 	self setParent: self recvExprs to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> relOps [
+GoFunctionDeclNode >> relOps [
 	^ relOps
 ]
 
 { #category : #generated }
-GoSourceFileNode >> relOps: anOrderedCollection [
+GoFunctionDeclNode >> relOps: anOrderedCollection [
 	relOps := anOrderedCollection
 ]
 
 { #category : #generated }
-GoSourceFileNode >> reses [
+GoFunctionDeclNode >> reses [
 	^ reses
 ]
 
 { #category : #generated }
-GoSourceFileNode >> reses: anOrderedCollection [
+GoFunctionDeclNode >> reses: anOrderedCollection [
 	self setParent: self reses to: nil.
 	reses := anOrderedCollection.
 	self setParent: self reses to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> tags [
+GoFunctionDeclNode >> tags [
 	^ tags
 ]
 
 { #category : #generated }
-GoSourceFileNode >> tags: anOrderedCollection [
+GoFunctionDeclNode >> tags: anOrderedCollection [
 	tags := anOrderedCollection
 ]
 
 { #category : #generated }
-GoSourceFileNode >> typeLists [
+GoFunctionDeclNode >> typeLists [
 	^ typeLists
 ]
 
 { #category : #generated }
-GoSourceFileNode >> typeLists: anOrderedCollection [
+GoFunctionDeclNode >> typeLists: anOrderedCollection [
 	self setParents: self typeLists to: nil.
 	typeLists := anOrderedCollection.
 	self setParents: self typeLists to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> types [
+GoFunctionDeclNode >> types [
 	^ types
 ]
 
 { #category : #generated }
-GoSourceFileNode >> types: anOrderedCollection [
+GoFunctionDeclNode >> types: anOrderedCollection [
 	self setParent: self types to: nil.
 	types := anOrderedCollection.
 	self setParent: self types to: self
 ]
 
 { #category : #generated }
-GoSourceFileNode >> unaryOps [
+GoFunctionDeclNode >> unaryOps [
 	^ unaryOps
 ]
 
 { #category : #generated }
-GoSourceFileNode >> unaryOps: anOrderedCollection [
+GoFunctionDeclNode >> unaryOps: anOrderedCollection [
 	unaryOps := anOrderedCollection
 ]
