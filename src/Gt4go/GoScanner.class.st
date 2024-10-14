@@ -1,7 +1,7 @@
 Class {
 	#name : #GoScanner,
 	#superclass : #SmaCCScanner,
-	#category : #'BaselineOfGt4go-Parser'
+	#category : #'Gt4go-Parser'
 }
 
 { #category : #'generated-initialization' }
